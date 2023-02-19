@@ -47,5 +47,6 @@ func main() {
 	defer DB.Close()
 
 	database.DbMigrate(DB)
+	fmt.Println("App listening on port : " + os.Getenv("PORT"))
 	routes.StartServer().Run(":" + os.Getenv("PORT"))
 }
