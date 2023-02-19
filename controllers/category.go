@@ -75,6 +75,7 @@ func UpdateCategory(c *gin.Context) {
 		"result": "Success update category",
 	})
 }
+
 func DeleteCategory(c *gin.Context) {
 	var category structs.Category
 	id, _ := strconv.Atoi(c.Param("id"))
