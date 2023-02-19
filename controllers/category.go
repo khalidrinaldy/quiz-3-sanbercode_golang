@@ -29,7 +29,8 @@ func InsertCategory(c *gin.Context) {
 	err := c.ShouldBindJSON(&category)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"result": err,
+			"message": "Bad request body",
+			"result":  err,
 		})
 		return
 	}
@@ -39,7 +40,8 @@ func InsertCategory(c *gin.Context) {
 	err = repository.InsertCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"result": err,
+			"message": "Error in database",
+			"result":  err,
 		})
 		return
 	}
@@ -56,7 +58,8 @@ func UpdateCategory(c *gin.Context) {
 	err := c.ShouldBindJSON(&category)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"result": err,
+			"message": "Bad request body",
+			"result":  err,
 		})
 		return
 	}
@@ -65,7 +68,8 @@ func UpdateCategory(c *gin.Context) {
 	err = repository.InsertCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"result": err,
+			"message": "Error in database",
+			"result":  err,
 		})
 		return
 	}
@@ -83,7 +87,8 @@ func DeleteCategory(c *gin.Context) {
 	err := repository.InsertCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"result": err,
+			"message": "Error in database",
+			"result":  err,
 		})
 		return
 	}
