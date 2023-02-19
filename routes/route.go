@@ -12,5 +12,10 @@ func StartServer() *gin.Engine {
 	router.GET("/persegi", controllers.Persegi)
 	router.GET("/persegi-panjang", controllers.PersegiPanjang)
 	router.GET("/lingkaran", controllers.Lingkaran)
+
+	router.GET("/category", controllers.GetAllCategories)
+	router.POST("/category", controllers.InsertCategory)
+	router.PUT("/category/:id", controllers.UpdateCategory)
+	router.DELETE("/category/:id", controllers.DeleteCategory)
 	return router
 }
