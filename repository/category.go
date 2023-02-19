@@ -16,7 +16,7 @@ func GetAllCategories(db *sql.DB) (categories []structs.Category, err error) {
 
 	for rows.Next() {
 		var category structs.Category
-		err := rows.Scan(category.ID, category.Name, category.CreatedAt, category.UpdatedAt)
+		err := rows.Scan(category.ID, category.Name)
 		if err != nil {
 			panic(err)
 		}
@@ -26,8 +26,8 @@ func GetAllCategories(db *sql.DB) (categories []structs.Category, err error) {
 }
 
 func InsertCategory(db *sql.DB, category structs.Category) (err error) {
-	sql := "insert into category (name, created_at, updated_at) values ($1, $2, $3)"
-	errs := db.QueryRow(sql, category.Name, category.CreatedAt, category.UpdatedAt)
+	sql := "insert into category (name) values ($1)"
+	errs := db.QueryRow(sql, category.Name)
 	return errs.Err()
 }
 
