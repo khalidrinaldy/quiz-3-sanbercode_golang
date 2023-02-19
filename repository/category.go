@@ -12,7 +12,7 @@ func GetAllCategories(db *sql.DB) (categories []structs.Category, err error) {
 	if err != nil {
 		panic(err)
 	}
-	defer db.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		var category structs.Category
@@ -32,8 +32,8 @@ func InsertCategory(db *sql.DB, category structs.Category) (err error) {
 }
 
 func UpdateCategory(db *sql.DB, category structs.Category) (err error) {
-	sql := "update category set name=$1"
-	errs := db.QueryRow(sql, category.Name)
+	sql := "update category set name=$1 where id=$2"
+	errs := db.QueryRow(sql, category.Name, category.ID)
 	return errs.Err()
 }
 
