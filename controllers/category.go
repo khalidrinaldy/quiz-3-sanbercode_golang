@@ -7,7 +7,6 @@ import (
 	"quiz-3-sanbercode_golang/repository"
 	"quiz-3-sanbercode_golang/structs"
 	"strconv"
-	"time"
 )
 
 func GetAllCategories(c *gin.Context) {
@@ -35,8 +34,6 @@ func InsertCategory(c *gin.Context) {
 		return
 	}
 
-	category.CreatedAt = time.Now()
-	category.UpdatedAt = time.Now()
 	err = repository.InsertCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
