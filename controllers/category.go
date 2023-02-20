@@ -22,6 +22,20 @@ func GetAllCategories(c *gin.Context) {
 	}
 }
 
+func GetBooksWithCategory(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	books, err := repository.GetBooksWithCategory(database.DbConnection, id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"result": err,
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"result": books,
+		})
+	}
+}
+
 func InsertCategory(c *gin.Context) {
 	var category structs.Category
 
