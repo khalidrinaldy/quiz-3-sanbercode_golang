@@ -1,5 +1,5 @@
 -- +migrate Up
--- +migrate Statement
+-- +migrate StatementBegin
 create table Book (
     id serial not null primary key,
     title varchar(256) not null,
