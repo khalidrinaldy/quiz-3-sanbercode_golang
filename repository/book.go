@@ -27,14 +27,14 @@ func GetAllBooks(db *sql.DB) (books []structs.Book, err error) {
 }
 
 func InsertBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "insert into book (title, description, image_url, release_year, price, total_page, category_id) values ($1, $2, $3, $4, $5, $6, $7)"
-	errs := db.QueryRow(sql, book.Title, book.Description, book.ImageUrl, book.ReleaseYear, book.Price, book.TotalPage, book.CategoryID)
+	sql := "insert into book (title, description, image_url, release_year, price, total_page, thickness, category_id) values ($1, $2, $3, $4, $5, $6, $7, $8)"
+	errs := db.QueryRow(sql, book.Title, book.Description, book.ImageUrl, book.ReleaseYear, book.Price, book.TotalPage, book.Thickness, book.CategoryID)
 	return errs.Err()
 }
 
 func UpdateBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "update book set title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, category_id=$7 where id = $8"
-	errs := db.QueryRow(sql, book.Title, book.Description, book.ImageUrl, book.ReleaseYear, book.Price, book.TotalPage, book.CategoryID, book.ID)
+	sql := "update book set title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, category_id=$8 where id = $9"
+	errs := db.QueryRow(sql, book.Title, book.Description, book.ImageUrl, book.ReleaseYear, book.Price, book.TotalPage, book.Thickness, book.CategoryID, book.ID)
 	return errs.Err()
 }
 
