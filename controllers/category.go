@@ -62,7 +62,7 @@ func UpdateCategory(c *gin.Context) {
 	}
 
 	category.ID = id
-	err = repository.InsertCategory(database.DbConnection, category)
+	err = repository.UpdateCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Error in database",
@@ -81,7 +81,7 @@ func DeleteCategory(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	category.ID = id
-	err := repository.InsertCategory(database.DbConnection, category)
+	err := repository.DeleteCategory(database.DbConnection, category)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Error in database",
