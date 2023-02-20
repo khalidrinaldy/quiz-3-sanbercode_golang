@@ -16,7 +16,7 @@ func GetAllCategories(db *sql.DB) (categories []structs.Category, err error) {
 
 	for rows.Next() {
 		var category structs.Category
-		err := rows.Scan(category.ID, category.Name)
+		err := rows.Scan(category.ID, category.Name, category.CreatedAt, category.UpdatedAt)
 		if err != nil {
 			panic(err)
 		}
