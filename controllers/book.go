@@ -52,16 +52,12 @@ func InsertBook(c *gin.Context) {
 		return
 	}
 
-	switch {
-	case book.TotalPage <= 100:
+	if book.TotalPage <= 100 {
 		book.Thickness = "tipis"
-		break
-	case book.TotalPage >= 101 && book.TotalPage <= 200:
+	} else if book.TotalPage >= 101 && book.TotalPage <= 200 {
 		book.Thickness = "sedang"
-		break
-	case book.TotalPage <= 201:
+	} else if book.TotalPage <= 201 {
 		book.Thickness = "tebal"
-		break
 	}
 
 	err = repository.InsertBook(database.DbConnection, book)
